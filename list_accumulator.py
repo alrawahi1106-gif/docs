@@ -1,14 +1,12 @@
 """Append a value to a list and return the list."""
 
 
-def list_accumulator(item, items=None):
+def list_accumulator(item, items=[]):
     """Append item to items and return items.
 
-    items defaults to a new empty list on each call. A literal [] default
-    would be created once and shared across calls, so values would pile up.
+    The default list is created once, when the function is defined, so calls
+    that omit items all append to the same shared list.
     """
-    if items is None:
-        items = []
     items.append(item)
     return items
 
@@ -16,7 +14,9 @@ def list_accumulator(item, items=None):
 if __name__ == "__main__":
     print(list_accumulator(1))
     print(list_accumulator(2))
+    print(list_accumulator(3))
 
-    existing = ["a"]
-    print(list_accumulator("b", existing))
-    print(existing)
+    l = ["a"]
+    print(list_accumulator("b", l))
+    print(list_accumulator("c", l))
+    print(list_accumulator(4))
